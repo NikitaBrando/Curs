@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Никита Антонов | Занятие 2 — Флаер для пиццерии</title>
+    
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #05070a;
+            color: #eef2ff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+        /* Header */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(5, 7, 10, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.75rem 2rem;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-img {
+            height: 44px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+        .brand-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #FFFFFF, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .buttan {
+            background: transparent;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #cbd5e6;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .buttan:hover, .buttan.active {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 1rem;
+        }
+        /* Панель с кнопками (пустые ссылки) */
+        .materials-toolbar {
+            background: #0f172ad9;
+            backdrop-filter: blur(8px);
+            border-radius: 60px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem auto 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            width: fit-content;
+            max-width: 100%;
+        }
+        .material-link {
+            background: linear-gradient(95deg, #1e293b, #0f172a);
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #f1f5f9;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-decoration: none;
+        }
+        .material-link:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(95deg, #2d3a5e, #1e293b);
+            border-color: #38bdf8;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            color: white;
+        }
+        /* Основные блоки урока */
+        .course-lesson-container {
+            margin-top: 1rem;
+        }
+        .lesson-hero-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .lesson-meta-badge {
+            background: #e63946;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            display: inline-block;
+        }
+        .lesson-main-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #fff, #ffb347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .lesson-lead-text {
+            font-size: 1.1rem;
+            max-width: 850px;
+            margin: 0 auto;
+            color: #b9c7db;
+        }
+        .lesson-content-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .lesson-text-section {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(2px);
+            border-radius: 1.8rem;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.2s;
+        }
+        .lesson-text-section:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 15px 30px -12px rgba(0,0,0,0.3);
+        }
+        .section-meta-line {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .section-badge-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #0f172a;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            color: #94a3b8;
+        }
+        .section-format-tag {
+            font-size: 0.7rem;
+            background: #2d3a5e;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            color: #b9e6ff;
+        }
+        .homework-badge {
+            background: #3b2b1f;
+            color: #facc15;
+        }
+        .section-heading {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 0.5rem 0 1rem;
+            letter-spacing: -0.3px;
+        }
+        .section-paragraph {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            color: #cfdef5;
+            line-height: 1.6;
+        }
+        .pizzacourse_highlight {
+            color: #ff9100;
+            font-weight: 600;
+        }
+        .pizzacourse_demo_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 24px 0;
+            text-align: center;
+        }
+        .pizzacourse_demo_col {
+            background: #e63946;
+            color: white;
+            padding: 20px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+        .pizzacourse_demo_span {
+            font-size: 12px;
+            font-weight: normal;
+            opacity: 0.9;
+            display: block;
+            margin-top: 8px;
+        }
+        .pizzacourse_tip_block {
+            background: rgba(255, 145, 0, 0.15);
+            border-left: 4px solid #ff9100;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 24px 0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .pizzacourse_tip_icon {
+            font-size: 24px;
+        }
+        .pizzacourse_step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+        .pizzacourse_step_num {
+            background: #e63946;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .pizzacourse_step_content {
+            flex: 1;
+            line-height: 1.5;
+        }
+        .pizzacourse_step_content strong {
+            color: #ff9100;
+        }
+        .pizzacourse_steps_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .pizzacourse_step_card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .pizzacourse_step_card_title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ff9100;
+        }
+        .pizzacourse_checklist {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .pizzacourse_checklist_title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #ff9100;
+        }
+        .pizzacourse_checklist_item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 12px 0;
+            cursor: pointer;
+            color: #d2d2d7;
+        }
+        .pizzacourse_checklist_item input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .pizzacourse_check_block {
+            background: rgba(69, 243, 255, 0.1);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin: 24px 0;
+        }
+        .pizzacourse_prompt_box {
+            background: #0a0a0f;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 24px 0;
+            border: 1px solid #ff9100;
+        }
+        .pizzacourse_prompt_label {
+            font-size: 14px;
+            margin-bottom: 12px;
+            color: #ff9100;
+            font-weight: 600;
+        }
+        .pizzacourse_code {
+            display: block;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            word-break: break-word;
+            white-space: pre-wrap;
+            color: #45f3ff;
+        }
+        .pizzacourse_print_box {
+            background: rgba(0, 100, 200, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .pizzacourse_print_title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #45f3ff;
+        }
+        .pizzacourse_bonus_box {
+            background: linear-gradient(135deg, rgba(255, 145, 0, 0.1), rgba(255, 145, 0, 0.05));
+            border-radius: 16px;
+            padding: 20px;
+            margin: 24px 0;
+            border: 1px dashed #ff9100;
+        }
+        .pizzacourse_bonus_title {
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #ff9100;
+        }
+        .pizzacourse_cheatsheet {
+            background: #2d1b0e;
+            border-radius: 20px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .pizzacourse_cheatsheet_title {
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #ffb74d;
+        }
+        .action-footer-block {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .action-submit-button {
+            display: inline-block;
+            background: #ff9100;
+            color: #0f172a;
+            font-weight: 700;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.2s;
+        }
+        .action-submit-button:hover {
+            background: #ffb347;
+            transform: scale(1.02);
+        }
+        /* Единое видео */
+        .single-video-container {
+            margin: 2rem 0 2.5rem;
+            background: #0a0f1c;
+            border-radius: 2rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            text-align: center;
+        }
+        .video-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #7dd3fc;
+        }
+        .video-wrapper-single {
+            display: flex;
+            justify-content: center;
+        }
+        .video-wrapper-single iframe {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px -12px black;
+        }
+        .site-footer {
+            background: #020408;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 3rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .social-icons a svg {
+            width: 32px;
+            height: 32px;
+            color: #94a3b8;
+        }
+        @media (max-width: 768px) {
+            main { padding: 1rem; }
+            .lesson-main-title { font-size: 1.6rem; }
+            .section-heading { font-size: 1.3rem; }
+            .lesson-text-section { padding: 1.2rem; }
+            .pizzacourse_demo_grid { gap: 8px; padding: 12px; }
+            .pizzacourse_steps_grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="nav-container">
+        <div class="logo-area">
+            <img src="../image/269da16b-f9f9-4a65-9fb0-4ea0ae671802.png" alt="Логотип" class="logo-img" onerror="this.src='https://placehold.co/60x40?text=DNA'">
+            <span class="brand-name">ДНК-БРЕНДА</span>
+        </div>
+        <div class="nav-links">
+            <a href="../index.html" class="buttan">Главное</a>
+            <a href="../cource/Lesone.html" class="buttan">Занятие 1</a>
+            <a href="#" class="buttan active">Занятие 2</a>
+            <a href="../cource/Lestre.html" class="buttan">Занятие 3</a>
+            <a href="../cource/Lesfour.html" class="buttan">Занятие 4</a>
+            <a href="../cource/Lesfive.html" class="buttan">Занятие 5</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div style="text-align: center; margin-bottom: 0.5rem;">
+        <h1 style="font-family: 'Russo One'; font-size: 2rem; background: linear-gradient(135deg,#fff,#ff9a44); -webkit-background-clip: text; background-clip: text; color: transparent;">Занятие 2: Рекламный флаер</h1>
+    </div>
+    
+    <!-- Панель с пустыми ссылками (реферат, презентация, план-конспект) -->
+    <div class="materials-toolbar">
+        <a href="https://docs.google.com/document/d/1vOV7mWt9X5LhQFet2e-zyqD0fv0JkyvWPgvGlJVw9-A/edit?usp=sharing" class="material-link" target="_blank">📘 Онлайн-реферат</a>
+        <a href="https://docs.google.com/presentation/d/1KgMLz04qTr3Y1r61K2UhJ2ACkPLEQIt0ZPonGrqDHhQ/edit?usp=sharing" class="material-link" target="_blank">📊 Презентация курса</a>
+        <a href="https://docs.google.com/document/d/1Jov8_O8YKUK3Sg5a7y1NdE73TwH5OG0YZY6WYLfDyJc/edit?usp=sharing" class="material-link" target="_blank">📋 План-конспект</a>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ УРОКА (без видео внутри блоков) -->
+    <div class="course-lesson-container">
+        <div class="lesson-hero-header">
+            <div class="lesson-meta-badge">🍕 УРОК</div>
+            <h1 class="lesson-main-title">Рекламная коммуникация — Флаер для пиццерии «ПИЦЦАРАЙ»</h1>
+            <p class="lesson-lead-text">Полный цикл: от теории до макета с ИИ-фоном и подготовки к печати</p>
+        </div>
+
+        <div class="lesson-content-stream">
+            <!-- ЧАСТЬ 1: ТЕОРИЯ -->
+            <div class="lesson-text-section">
+                <div class="section-meta-line">
+                    <span class="section-badge-tag">📐 ЧАСТЬ 1</span>
+                    <span class="section-format-tag">Теория</span>
+                </div>
+                <h2 class="section-heading">Форматы, сетки и визуальная иерархия</h2>
+                <p class="section-paragraph">Перед тем как что-то рисовать, разберём правила. Флаер — это не просто картинка, а работающий инструмент. Для «ПИЦЦАРАЙ» выбираем формат <strong class="pizzacourse_highlight">A5 (148×210 мм)</strong> книжный — оптимально помещается в руку.</p>
+                <p class="section-paragraph"><strong class="pizzacourse_highlight">Модульная сетка (3 колонки для A5):</strong> верхнее/нижнее поле — 10 мм, левое/правое — 12 мм, ширина колонки — 38 мм, межколонник — 5 мм. Эта сетка поможет тебе не разбросать объекты хаотично.</p>
+                <div class="pizzacourse_demo_grid">
+                    <div class="pizzacourse_demo_col">Колонка 1<br><span class="pizzacourse_demo_span">текст акции</span></div>
+                    <div class="pizzacourse_demo_col">Колонка 2<br><span class="pizzacourse_demo_span">фото пиццы</span></div>
+                    <div class="pizzacourse_demo_col">Колонка 3<br><span class="pizzacourse_demo_span">QR + CTA</span></div>
+                </div>
+                <p class="section-paragraph"><strong class="pizzacourse_highlight">Визуальная иерархия (правило Z-траектории):</strong> взгляд идёт из левого верхнего угла в правый нижний. Порядок важности: акция/заголовок → фото пиццы → условия → логотип + QR/призыв.</p>
+                <div class="pizzacourse_tip_block">
+                    <span class="pizzacourse_tip_icon">✨</span>
+                    <span>Правило Z: логотип — слева сверху, призыв к действию — справа снизу.</span>
+                </div>
+            </div>
+
+            <!-- ЧАСТЬ 2: ПРАКТИКА (ДОКУМЕНТ И СЕТКА) -->
+            <div class="lesson-text-section">
+                <div class="section-meta-line">
+                    <span class="section-badge-tag">🛠️ ЧАСТЬ 2</span>
+                    <span class="section-format-tag">Практика</span>
+                </div>
+                <h2 class="section-heading">Создаём документ и строим сетку</h2>
+                <div class="pizzacourse_step">
+                    <div class="pizzacourse_step_num">1</div>
+                    <div class="pizzacourse_step_content"><strong>Создай новый документ</strong><br>148×210 мм (A5), книжная ориентация, Bleed 3 мм, цветовой режим CMYK</div>
+                </div>
+                <div class="pizzacourse_step">
+                    <div class="pizzacourse_step_num">2</div>
+                    <div class="pizzacourse_step_content"><strong>Добавь направляющие</strong><br>Верх/низ — 10 мм, Лево/право — 12 мм</div>
+                </div>
+                <div class="pizzacourse_step">
+                    <div class="pizzacourse_step_num">3</div>
+                    <div class="pizzacourse_step_content"><strong>Разбей на 3 колонки</strong><br>Ширина одной колонки = 38 мм, расстояние между колонками = 5 мм</div>
+                </div>
+                <div class="pizzacourse_check_block">
+                    <span class="pizzacourse_check_icon">✅</span>
+                    <span><strong>Твой первый результат:</strong> сделай скриншот экрана с направляющими и сеткой</span>
+                </div>
+            </div>
+
+            <!-- ЧАСТЬ 3: НАПОЛНЕНИЕ ФЛАЕРА -->
+            <div class="lesson-text-section">
+                <div class="section-meta-line">
+                    <span class="section-badge-tag">🍕 ЧАСТЬ 3</span>
+                    <span class="section-format-tag">Практика</span>
+                </div>
+                <h2 class="section-heading">Размещаем логотип, текст и фото</h2>
+                <p class="section-paragraph"><strong class="pizzacourse_highlight">Бренд:</strong> «ПИЦЦАРАЙ»<br><strong class="pizzacourse_highlight">Акция:</strong> «Большая пицца 45 см за 599 ₽ вместо 1099 ₽»</p>
+                <div class="pizzacourse_steps_grid">
+                    <div class="pizzacourse_step_card"><div class="pizzacourse_step_card_title">🎨 Шаг 4. Фон</div><p>Залей тёплым кремовым (как тесто) или тёмно-красным (томатный соус).</p></div>
+                    <div class="pizzacourse_step_card"><div class="pizzacourse_step_card_title">📛 Шаг 5. Логотип</div><p>Верхний левый угол, отступ 10 мм. Цвет — рубиново-красный или белый.</p></div>
+                    <div class="pizzacourse_step_card"><div class="pizzacourse_step_card_title">💰 Шаг 6. Заголовок</div><p>Левая колонка: «45 см – 599 ₽» (42–48 pt). Ниже «Вместо 1099 ₽» — перечеркнуть!</p></div>
+                    <div class="pizzacourse_step_card"><div class="pizzacourse_step_card_title">📸 Шаг 7. Фото пиццы</div><p>Центральная колонка. Вид сверху, пепперони или четыре сыра.</p></div>
+                    <div class="pizzacourse_step_card"><div class="pizzacourse_step_card_title">📝 Шаг 8. Условия</div><p>Правая колонка: кегль 12 pt, условия акции и доставки.</p></div>
+                    <div class="pizzacourse_step_card"><div class="pizzacourse_step_card_title">📱 Шаг 9. QR + призыв</div><p>Под условиями — QR-код. Под ним плашка: «ЖМИ НА QR – ЗАБЕРИ СВОЮ ПИЦЦУ!»</p></div>
+                </div>
+                <div class="pizzacourse_checklist">
+                    <div class="pizzacourse_checklist_title">✅ Промежуточная проверка</div>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Логотип слева сверху</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Большая цена в левой колонке</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Пицца по центру</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Условия и QR справа</label>
+                </div>
+            </div>
+
+            <!-- ЧАСТЬ 4: ИИ ДЛЯ ФОНА -->
+            <div class="lesson-text-section">
+                <div class="section-meta-line">
+                    <span class="section-badge-tag">🤖 ЧАСТЬ 4</span>
+                    <span class="section-format-tag">Генерация ИИ</span>
+                </div>
+                <h2 class="section-heading">Создаём уникальный фон с помощью нейросети</h2>
+                <p class="section-paragraph">Обычная заливка уже никого не удивит. Сгенерируй фон, который добавит стиля, но не перебьёт контент.</p>
+                <div class="pizzacourse_prompt_box">
+                    <div class="pizzacourse_prompt_label">🎨 Скопируй этот промпт (для Midjourney / DALL-E / Kandinsky):</div>
+                    <code class="pizzacourse_code">pizza flyer background, warm beige and dark red, abstract dough texture, italian rustic style, no text, no pizza, suitable for typography, 148x210 aspect ratio</code>
+                </div>
+                <ul class="pizzacourse_list" style="margin-left: 1.5rem; color:#cfdef5">
+                    <li>Сгенерируй 3 варианта фона</li>
+                    <li>Выбери лучший (не пёстрый, текст должен читаться)</li>
+                    <li>Загрузи в макет — самый нижний слой</li>
+                    <li>Если текст теряется: добавь чёрный прямоугольник с прозрачностью 20–30%</li>
+                </ul>
+                <div class="pizzacourse_tip_block"><span class="pizzacourse_tip_icon">🔥</span><span>Лайфхак: сгенерируй текстуру теста или пекарской бумаги — это создаст аутентичность пиццерии.</span></div>
+            </div>
+
+            <!-- ЧАСТЬ 5: САМОСТОЯТЕЛЬНАЯ РАБОТА + ПЕЧАТЬ -->
+            <div class="lesson-text-section">
+                <div class="section-meta-line">
+                    <span class="section-badge-tag homework-badge">📋 ЧАСТЬ 5</span>
+                    <span class="section-format-tag">СРС + Печать</span>
+                </div>
+                <h2 class="section-heading">Доработка и подготовка к печати</h2>
+                <div class="pizzacourse_checklist">
+                    <div class="pizzacourse_checklist_title">🎯 Финальный чек-лист «ПИЦЦАРАЙ»</div>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Размер A5, вылеты (bleed) по 3 мм</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Все цвета в CMYK</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Старая цена перечёркнута</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> QR-код работает (проверь телефоном)</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Текст условий легко читается на фоне</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Логотип не сливается с фоном</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Фото пиццы чёткое, 300 dpi</label>
+                    <label class="pizzacourse_checklist_item"><input type="checkbox"> Призыв к действию заметен сразу</label>
+                </div>
+                <div class="pizzacourse_print_box">
+                    <div class="pizzacourse_print_title">🖨️ Как подготовить к печати</div>
+                    <ul class="pizzacourse_list">
+                        <li>Сохрани как <strong>PDF/X-1a или PDF/X-4</strong> — стандарт для типографий</li>
+                        <li>Проверь разрешение — <strong>300 dpi</strong></li>
+                        <li>Шрифты — встрой в файл или переведи в кривые</li>
+                    </ul>
+                </div>
+                <div class="pizzacourse_bonus_box">
+                    <div class="pizzacourse_bonus_title">🔁 Бонус-задание (для прокачки)</div>
+                    <p class="section-paragraph" style="margin-bottom: 0;">Сделай <strong>двусторонний флаер</strong>: лицо — акция, оборот — мини-меню из 5 пицц + адрес и время работы. Это уровень профессионального дизайнера.</p>
+                </div>
+            </div>
+
+            <!-- ШПАРГАЛКА -->
+            <div class="lesson-text-section">
+                <div class="section-meta-line"><span class="section-badge-tag">🏆 ИТОГ</span><span class="section-format-tag">Шпаргалка</span></div>
+                <h2 class="section-heading">Что ты теперь умеешь</h2>
+                <p class="section-paragraph">Ты прошёл полный путь: от теории до макета с ИИ-фоном. Теперь ты можешь строить модульную сетку, расставлять визуальную иерархию, генерировать фоны нейросетью и готовить макет к печати.</p>
+                <div class="pizzacourse_cheatsheet">
+                    <div class="pizzacourse_cheatsheet_title">🍕 Шпаргалка «ПИЦЦАРАЙ» (сохрани себе)</div>
+                    <ul style="color:#fae8dd; margin-left:1.2rem;">
+                        <li><strong>Сетка:</strong> 3 колонки (лево — текст, центр — пицца, право — QR+CTA)</li>
+                        <li><strong>Цвета:</strong> красный + золото + кремовый</li>
+                        <li><strong>ИИ-фон:</strong> не конкурирует с пиццей, лучше текстура или минимализм</li>
+                        <li><strong>Главное на флаере:</strong> большая цена и фото пиццы</li>
+                        <li><strong>QR-код:</strong> быстрый заказ — иначе человек забудет</li>
+                    </ul>
+                </div>
+                <div class="action-footer-block">
+                    <p class="action-instruction">🎉 У тебя получилось! Покажи готовый флаер — я проверю как реальный заказчик и дам обратную связь.</p>
+                    <a href="#" class="action-submit-button">📤 Отправить работу на проверку</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЕДИНОЕ ВИДЕО ПОСЛЕ ВСЕЙ ПРАКТИКИ -->
+    <div class="single-video-container">
+        <div class="video-title">🎬 Видео-урок: полный разбор создания флаера для пиццерии</div>
+        <div class="video-wrapper-single">
+            <iframe src="https://vkvideo.ru/video_ext.php?oid=-239322196&id=456239020&hash=ab70473d1b8bde4f&hd=1" 
+                    allow="autoplay; encrypted-media; fullscreen; picture-in-picture" 
+                    frameborder="0" 
+                    allowfullscreen></iframe>
+        </div>
+        <p style="margin-top: 1rem; color:

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Никита Антонов | СРС — самостоятельные работы</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0c15;
+            color: #f0f3fa;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 12, 21, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.8rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            height: 48px;
+            width: auto;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+            transition: transform 0.2s ease;
+        }
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .buttan {
+            background: linear-gradient(95deg, #1e2a3e, #0f172a);
+            padding: 0.6rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-family: 'Inter', sans-serif;
+        }
+        .buttan:hover {
+            background: linear-gradient(95deg, #2d3e5e, #1e2a3e);
+            border-color: #38bdf8;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Основной контент */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 2rem 3rem;
+        }
+
+        /* Заголовок страницы */
+        .page-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ffffff, #7dd3fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .page-subtitle {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Список СРС */
+        .srs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .srs-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 1.2rem;
+            padding: 1rem 1.5rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-decoration: none;
+            color: inherit;
+        }
+        .srs-item:hover {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: #38bdf8;
+            transform: translateX(6px);
+        }
+
+        .srs-number {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            min-width: 70px;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 0.3rem 0;
+            text-align: center;
+            border-radius: 40px;
+        }
+
+        .srs-info {
+            flex: 1;
+        }
+        .srs-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        .srs-desc {
+            font-size: 0.75rem;
+            color: #7e8ba3;
+        }
+
+        .srs-link {
+            font-size: 0.85rem;
+            color: #ffb347;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .srs-item:hover .srs-link {
+            opacity: 1;
+        }
+
+        /* Информационная плашка */
+        .info-note {
+            margin-top: 2.5rem;
+            background: rgba(56, 189, 248, 0.05);
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7e8ba3;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* Футер */
+        .site-footer {
+            background: #03050a;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+        .social-icons a svg {
+            width: 36px;
+            height: 36px;
+            color: #7e8ba3;
+            transition: all 0.2s;
+        }
+        .social-icons a:hover svg {
+            color: #38bdf8;
+            transform: translateY(-3px);
+        }
+        .site-footer p {
+            font-size: 0.85rem;
+            color: #5b6e8c;
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 1rem; }
+            .srs-item { flex-wrap: wrap; padding: 1rem; }
+            .srs-number { min-width: 55px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        
+        <div class="nav-links">
+            <a href="../index.html" class="buttan">Главная</a>
+            <a href="#" class="buttan" style="background: linear-gradient(95deg, #38bdf8, #0f172a); border-color: #38bdf8;">📋 СРС</a>
+            <a href="../cource/Lesone.html" class="buttan">К занятиям</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="page-header">
+        <h1 class="page-title">Самостоятельные работы (СРС)</h1>
+       
+    </div>
+
+    <div class="srs-list">
+        <!-- СРС 1 -->
+        <a href="https://docs.google.com/document/d/1t4qt4u2hpyRd1LxgvVjXqZmWGUnVOPoCAGD01GRBsHM/edit?usp=sharing" class="srs-item" target="_blank">
+            <div class="srs-number">СРС 1</div>
+            <div class="srs-info">
+                <div class="srs-name">Лекции</div>
+                
+            </div>
+           
+        </a>
+
+        <!-- СРС 2 -->
+        <a href="https://docs.google.com/document/d/1i1GTDA8Cuxm6OGTzqup1aDmYjiWV9d1VjGhM9mX2qHc/edit?usp=sharing" class="srs-item" target="_blank">
+            <div class="srs-number">СРС 2</div>
+            <div class="srs-info">
+                <div class="srs-name">Электронный конспект «Стратегия национальной безопасности, Доктрина Информационной безопасности Российской Федерации»</div>
+                
+            </div>
+           
+        </a>
+
+        <!-- СРС 3 -->
+        <a href="https://docs.google.com/document/d/1wrsFny5kf-wFpW50w1JruFuYdYTMLs-4ozy7SkjREf4/edit?usp=sharing" class="srs-item" target="_blank">
+            <div class="srs-number">СРС 3</div>
+            <div class="srs-info">
+                <div class="srs-name">Электронный конспект «понятие и сущность защиты информации»
+</div>
+                
+            </div>
+            
+        </a>
+
+        <!-- СРС 4 -->
+        <a href="https://docs.google.com/document/d/12ROOFiW9j_zWtm6JdiGvVEf6oZ9QrO6qql_IN9Ry2qE/edit?usp=sharing" class="srs-item" target="_blank">
+            <div class="srs-number">СРС 4</div>
+            <div class="srs-info">
+                <div class="srs-name">Электронный конспект «Концептуальная модель информационной безопасности»</div>
+                
+            </div>
+           
+        </a>
+
+        <!-- СРС 5 -->
+        <a href="https://docs.google.com/document/d/1rlNmSJUOzaQeQY4H_GgcTc10N5Ep2-HcRrK53nONVAg/edit?usp=sharing" class="srs-item" target="_blank">
+            <div class="srs-number">СРС 5</div>
+            <div class="srs-info">
+                <div class="srs-name">Предмет и объект защиты информации</div>
+                
+            </div>
+           
+        </a>
+
+        <!-- СРС 6 -->
+        <a href="https://docs.google.com/document/d/1Dxq6vPa4Umvd4vfqWflO_YrqkoK5zLD26mQu6Aa8apM/edit?usp=sharing" class="srs-item" target="_blank">
+            <div class="srs-number">СРС 6</div>
+            <div class="srs-info">
+                <div class="srs-name">Лекция</div> 
+            </div>
+            
+        </a>
+
+        <!-- СРС 7 -->
+        <a href="https://docs.google.com/document/d/1lrLcK__uLKduBVArZ81tv-5eFR3A_Hs8qyzgvp-9YjA/edit?usp=sharing" class="srs-item" target="_blank">
+            <div class="srs-number">СРС 7</div>
+            <div class="srs-info">
+                <div class="srs-name">Лекция</div> 
+            </div>
+            
+        </a>
+
+        <!-- СРС 8 -->
+        <a href="https://docs.google.com/document/d/1RpxXrIcqtRJZx5E78SyajmYoeRzixhFFDTGC7CJlkJI/edit?usp=sharing" class="srs-item" target="_blank">
+            <div class="srs-number">СРС 8</div>
+            <div class="srs-info">
+                <div class="srs-name">«Средства безопасности ОС Windows (средства по умолчанию)»</div>
+                
+            </div>
+          
+        </a>
+
+        <!-- СРС 9 -->
+        <a href="https://docs.google.com/document/d/1EfHWR2f7IYVtYkn9t14dDKmDxepg8ssuLaWg2WeUikc/edit?usp=sharing" class="srs-item" target="_blank">
+            <div class="srs-number">СРС 9</div>
+            <div class="srs-info">
+                <div class="srs-name">«Компьютерная безопасность в локальных и глобальных сетях»</div>
+               
+            </div>
+            
+        </a>
+
+        <!-- СРС 10 -->
+        <a href="../files/Referat_Antivirus.docx" class="srs-item" target="_blank">
+            <div class="srs-number">Реферат</div>
+            <div class="srs-info">
+                <div class="srs-name">Антивирусы</div>
+                <div class="srs-desc">(Обзор рынка)</div>
+            </div>
+          
+        </a>
+
+        <!-- СРС 11 -->
+        <a href="../files/PREZA.pptx" class="srs-item" target="_blank">
+            <div class="srs-number">Презентация</div>
+            <div class="srs-info">
+                <div class="srs-name">Антивирусы</div>
+                <div class="srs-desc">(Обзор рынка)</div>
+            </div>
+            
+        </a>
+    </div>
+
+ 
+</main>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="social-icons">
+            <a href="#" aria-label="Telegram">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2s-.21-.05-.3-.03c-.12.03-2.1 1.34-5.94 3.93-.56.39-1.07.58-1.53.57-.51-.01-1.48-.28-2.21-.52-.9-.3-1.61-.45-1.55-.95.03-.26.39-.52 1.08-.8 4.21-1.83 7.02-3.05 8.43-3.65 4.02-1.71 4.86-2.01 5.4-2.02.12 0 .39.03.56.17.14.11.18.27.2.4l.01.12z"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="VK">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.37 13.56c-.08.18-.32.36-.67.36h-1.51c-.48 0-.8-.19-1.16-.54-.62-.62-1.25-1.23-1.87-1.84-.2-.2-.39-.24-.56-.12-.17.13-.24.36-.24.64v1.31c0 .33-.18.55-.54.55h-.73c-1.57 0-2.94-.6-3.95-1.72-1.06-1.18-1.81-2.73-2.26-4.63-.08-.34.05-.56.41-.56h1.51c.36 0 .54.18.64.5.34 1.13.82 2.14 1.45 3.01.15.2.32.3.47.3.17 0 .26-.1.26-.3V10.8c0-.47-.19-.71-.7-.8-.15-.02-.2-.08-.13-.21.1-.19.38-.34.8-.34h2.16c.36 0 .51.18.51.55v2.85c0 .24.08.34.22.34.13 0 .28-.1.44-.27.7-.75 1.2-1.63 1.51-2.62.08-.25.26-.4.54-.4h1.51c.44 0 .58.2.49.52-.33.95-.91 1.83-1.63 2.62-.21.23-.23.36-.04.56.63.65 1.3 1.25 1.95 1.88.24.23.33.52.22.84z"/>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2026 ДНК-бренда на Photoshop<br>Самостоятельные работы</p>
+    </div>
+</footer>
+
+</body>
+</html>
